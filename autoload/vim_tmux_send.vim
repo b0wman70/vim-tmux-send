@@ -1,13 +1,8 @@
 function! vim_tmux_send#send_keys(keys)
-    let pane_count = str2nr(trim(system('tmux list-panes | wc -l')))
-    if pane_count > 1
-        let clear_line_cmd = 'tmux send-keys -t+ C-u'
+        let clear_line_cmd = 'tmux send-keys -t right C-u'
         call system(clear_line_cmd)
-        let cmd = 'tmux send-keys -t+ ' . a:keys
+        let cmd = 'tmux send-keys -t right ' . a:keys
         call system(cmd)
-    else
-        echohl WarningMsg | echo 'No other tmux pane exists' | echohl None
-    endif
 endfunction
 
 function! vim_tmux_send#send_make_cmd()
